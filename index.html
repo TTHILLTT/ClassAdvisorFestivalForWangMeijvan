@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王美娟老师节日快乐</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f3e9;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* 背景装饰 */
+        .background-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .flower {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 105, 180, 0.2);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        
+        /* 头部样式 */
+        header {
+            text-align: center;
+            padding: 40px 20px 30px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .heart {
+            color: #ff4d6d;
+            animation: heartbeat 1.2s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        /* 主要内容区域 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        section {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+        }
+        
+        h2 {
+            color: #ff7a8a;
+            border-bottom: 2px solid #ffdde1;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 10px;
+        }
+        
+        /* 照片墙 */
+        .photo-wall {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .photo-frame {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .photo-frame:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .photo-frame::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            z-index: 2;
+            font-size: 0.9rem;
+        }
+        
+        /* 留言区 */
+        .message-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .message {
+            background-color: #f8f9fa;
+            border-left: 4px solid #ff7a8a;
+            padding: 20px;
+            border-radius: 0 10px 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .message:hover {
+            background-color: #fff5f7;
+        }
+        
+        .message h4 {
+            color: #ff7a8a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .message h4 i {
+            margin-right: 8px;
+        }
+        
+        /* 祝福语 */
+        .blessing {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(120deg, #fdfcfb 0%, #f8f9fa 100%);
+            border-radius: 10px;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        .blessing::before, .blessing::after {
+            content: '"';
+            font-size: 4rem;
+            color: #ffdde1;
+            position: absolute;
+            opacity: 0.5;
+        }
+        
+        .blessing::before {
+            top: 10px;
+            left: 20px;
+        }
+        
+        .blessing::after {
+            bottom: 10px;
+            right: 20px;
+            transform: rotate(180deg);
+        }
+        
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #fad0c4 0%, #ff9a9e 100%);
+            color: white;
+            margin-top: 40px;
+        }
+        
+        .class-info {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .photo-wall {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .photo-frame {
+                height: 150px;
+            }
+            
+            .message-board {
+                grid-template-columns: 1fr;
+            }
+            
+            .blessing {
+                font-size: 1.1rem;
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景装饰 -->
+    <div class="background-decoration" id="decoration"></div>
+    
+    <!-- 页面头部 -->
+    <header>
+        <h1><i class="fas fa-heart heart"></i> 王美娟老师，节日快乐！ <i class="fas fa-heart heart"></i></h1>
+        <p>感谢您用智慧与爱心点亮我们的青春，在这个特别的日子里，我们想对您说一声：老师，您辛苦了！</p>
+    </header>
+    
+    <div class="container">
+        <!-- 班级祝福 -->
+        <section>
+            <h2><i class="fas fa-star"></i> 班级祝福</h2>
+            <div class="blessing" id="blessingText">
+                亲爱的王老师，感谢您三年来的悉心教导与无私付出。您不仅是我们的班主任，更是我们人生路上的引路人。您的每一句鼓励，每一次关心，我们都铭记于心。在这个属于您的节日里，我们衷心祝愿您身体健康，工作顺利，桃李满天下！
+            </div>
+        </section>
+        
+        <!-- 照片墙 -->
+        <section>
+            <h2><i class="fas fa-images"></i> 照片墙</h2>
+            <div class="photo-wall" id="photoWall">
+            </div>
+        </section>
+        
+        <!-- 留言板 -->
+        <section>
+            <h2><i class="fas fa-comments"></i> 同学留言</h2>
+            <div class="message-board" id="messageBoard">
+            </div>
+        </section>
+    </div>
+    <button 
+        style="display:block;margin:30px auto;padding:12px 28px;font-size:1.1rem;background:#ff7a8a;color:#fff;border:none;border-radius:8px;cursor:pointer;box-shadow:0 2px 8px rgba(255,122,138,0.15);transition:background 0.2s;"
+        onclick="window.location.href='fun.html'"
+    >
+        这有个好玩的
+    </button>
+    <!-- 页脚 -->
+    <footer>
+        <p>谨代表全班同学向王美娟老师致以最诚挚的祝福！</p>
+        <p class="class-info">2024级(1)班 考锡琪同学 敬上!</p>
+        <p><i class="fas fa-graduation-cap"></i> 班主任节快乐！</p>
+    </footer>
+
+    <script>
+        // 生成背景装饰花朵
+        function createDecoration() {
+            const decoration = document.getElementById('decoration');
+            const flowers = ['🌸', '🌺', '🌷', '💐', '🌹', '🌻', '🌼'];
+            
+            for (let i = 0; i < 25; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.left = `${Math.random() * 100}vw`;
+                flower.style.fontSize = `${Math.random() * 20 + 35}px`;
+                flower.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                flower.style.animationDelay = `${Math.random() * 5}s`;
+                decoration.appendChild(flower);
+            }
+        }
+        
+        // 照片墙数据
+        const photos = [
+            { id: 1, caption: "我们可爱的王老师!" },
+            { id: 2, caption: "王老师在跳操" },
+            { id: 3, caption: "小熊!" },
+            { id: 4, caption: "王老师爱跑步"},
+            { id: 5, caption: "王老师和同学们一起军训"}
+        ];
+        
+        // 初始化照片墙
+        function initPhotoWall() {
+            const photoWall = document.getElementById('photoWall');
+            
+            photos.forEach(photo => {
+                const photoFrame = document.createElement('div');
+                photoFrame.className = 'photo-frame';
+                
+                const img = document.createElement('img');
+                img.src = `images/Meijvan${photo.id}.png`;
+                img.alt = photo.caption;
+                
+                const caption = document.createElement('div');
+                caption.className = 'photo-caption';
+                caption.textContent = photo.caption;
+                
+                photoFrame.appendChild(img);
+                photoFrame.appendChild(caption);
+                photoWall.appendChild(photoFrame);
+            });
+        }
+        
+        // 初始留言数据
+        let messages = [
+            { id: 1, name: "丁建臻", message: "三载教诲如星火，点亮少年万里程。愿您目之所及皆繁花，心之所向永晴朗。师恩长忆，祝顺遂安康。", time: "2025-12-14 12:06"},
+            { id: 2, name: "刘雨馨", message: "老师！！！你辛苦了！！！", time: "2025-12-14 12:06"},
+            { id: 3, name: "杜昊宸", message: "王老师，班主任节快乐！作为班主任，您用真心凝聚班级力量，用细心照料日常点滴；作为数学老师，您用专业点亮学习之路。感恩您的双重守护，愿您岁月无忧，万事皆如意，永远被温柔与美好环绕！ ", time: "2025-12-14 12:06"},
+            { id: 4, name: "安意如", message: "美丽，您不仅是我们的班主任，更像是我们的大朋友。", time: "2025-12-14 12:06"},
+            { id: 5, name: "刘默涵", message: "哈哈哈哈", time: "2025-12-14 12:06"},
+            { id: 6, name: "孙同凯", message: "没话说，美丽最强", time: "2025-12-14 12:06"},
+            { id: 7, name: "考锡琪", message: "怎么说，您永远是最懂我们，最善解人意的老师，谢谢您!", time: "2025-12-14 12:06"}
+        ];
+        
+        // 初始化留言板
+        function initMessageBoard() {
+            const messageBoard = document.getElementById('messageBoard');
+            renderMessages(messageBoard);
+        }
+        
+        // 渲染留言
+        function renderMessages(container) {
+            container.innerHTML = '';
+            
+            messages.forEach(msg => {
+                const messageEl = document.createElement('div');
+                messageEl.className = 'message';
+                
+                messageEl.innerHTML = `
+                    <h4><i class="fas fa-user-graduate"></i> ${msg.name}</h4>
+                    <p>${msg.message}</p>
+                    <div style="margin-top: 10px; font-size: 0.8rem; color: #888;">
+                        <i class="far fa-clock"></i> ${msg.time}
+                    </div>
+                `;
+                
+                container.appendChild(messageEl);
+            });
+        }
+        
+        // 随机更换祝福语
+        function changeBlessing() {
+            const blessings = [
+                "王老师，感谢您用知识的甘露浇灌我们理想的花朵，用心灵的清泉润育我们情操的美果。在这不寻常的节日里，献上我们深深的祝福！",
+                "亲爱的王老师，您就像我们的大家长，不仅关心我们的学习，更关心我们的生活。感谢您三年来的陪伴与教导，祝您节日快乐！",
+                "您不是演员，却吸引着我们饥渴的目光；您不是歌唱家，却让知识的清泉叮咚作响；您不是雕塑家，却塑造着一批批青年人的灵魂。老师，我们爱您！",
+                "王老师，您用心中全部的爱，染成了我们青春的色彩；您用执着的信念，铸成了我们性格的不屈。谢谢您，我们敬爱的老师！",
+                "如果我们是船，那老师就是帆，引领我们在知识的海洋里不断向前；如果我们要踏上旅途，那老师就像我们手持的蜡烛，照亮我们在学习上的那坎坷不平的路。"
+            ];
+            
+            const blessingText = document.getElementById('blessingText');
+            const randomIndex = Math.floor(Math.random() * blessings.length);
+            blessingText.textContent = blessings[randomIndex];
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            createDecoration();
+            initPhotoWall();
+            initMessageBoard();
+            
+            // 每10秒更换一次祝福语
+            setInterval(changeBlessing, 3000);
+            
+            // 点击祝福语区域可以随机更换
+            document.getElementById('blessingText').addEventListener('click', changeBlessing);
+            
+            // 为照片墙添加点击效果
+            const photoFrames = document.querySelectorAll('.photo-frame');
+            photoFrames.forEach(frame => {
+                frame.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.1) rotate(2deg)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1.05)';
+                    }, 300);
+                });
+            });
+            
+            // 添加页面加载时的动画效果
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, 300 + (index * 200));
+            });
+        });
+    </script>
+</body>
+</html>
